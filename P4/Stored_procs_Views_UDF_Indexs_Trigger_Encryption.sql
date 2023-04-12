@@ -1,6 +1,6 @@
 
 
------------ UpdateProductPriceByPercentage Stored Procedure --------------------------
+----------- UpdateProductPriceByPercentage Stored Procedure ---------------------------
 GO
 CREATE PROCEDURE sp_UpdateProductPriceByPercentage
     @ProductID INT,
