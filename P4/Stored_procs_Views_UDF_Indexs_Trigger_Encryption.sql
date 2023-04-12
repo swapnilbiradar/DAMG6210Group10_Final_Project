@@ -256,21 +256,21 @@ BEGIN
   DECLARE @last_order_date DATE;
   DECLARE @customer_email VARCHAR(255);
   
-  -- Get the email of the customer associated with the new order
+
   SELECT @customer_email = cust_email
   FROM customer
   WHERE cust_id = (SELECT customer_id FROM inserted);
   
-  -- Get the date of the customer's most recent order, if any
+
   SELECT TOP 1 @last_order_date = order_date
   FROM [order]
   WHERE customer_id = (SELECT customer_id FROM inserted)
   ORDER BY order_date DESC;
   
-  -- Check if the customer has placed any orders in the past 30 days
+ 
   IF @last_order_date IS NOT NULL AND @last_order_date >= DATEADD(DAY, -30, (SELECT order_date FROM inserted)) 
   BEGIN
-    -- If so, update their customer record with a repeat purchase flag
+ 
     UPDATE customer
     SET repeat_customer = 1
     WHERE cust_email = @customer_email;
@@ -281,10 +281,10 @@ END;
 
 ------trigger execution----
 GO
--- Insert a new order for an existing customer
+
 INSERT INTO [Order]( order_id,customer_id, payment_id,order_date, total_amount) VALUES (1212,1,1, '2023-04-22', 100.00);
 
--- Verify if the repeat_customer flag is updated for the customer
+
 SELECT repeat_customer FROM customer WHERE cust_id = 1;
 
 
