@@ -31,7 +31,7 @@ EXEC dbo.sp_UpdateProductPriceByPercentage
      @NewPrice = @NewPrice OUTPUT
 SELECT @NewPrice as NewPrice
 
------------ UpdateOrderStatus Stored Procedure -----------------------------
+----------- UpdateOrderStatus Stored Procedure ------------------------------
 
 GO
 CREATE PROCEDURE sp_UpdateOrderStatus
